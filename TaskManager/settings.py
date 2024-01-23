@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path,os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'Tasks',
+    'Core',
 ]
 
 MIDDLEWARE = [
@@ -75,13 +77,19 @@ WSGI_APPLICATION = 'TaskManager.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'store',
-        'USER': 'calebkip',
-        'PASSWORD': 'Kipchoge',
-        'HOST': '127.0.0.1', 
-        'PORT': '',
+    
+    
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+      'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'postgres',
+         'USER': 'calebkip',
+         'PASSWORD': 'Kipchoge',
+         'HOST': '127.0.0.1', 
+         'PORT': '',
         
     }
 }
@@ -127,3 +135,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL='Core.User'
