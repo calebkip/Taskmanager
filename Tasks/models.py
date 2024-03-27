@@ -6,7 +6,8 @@ from django.conf import settings
 class Supervisor(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     title=models.CharField(max_length=50)
-    
+    def __str__(self) -> str:
+        return self.user.username  
 class Department(models.Model):
     title=models.TextField(max_length=50)
     supervisor=models.ForeignKey(Supervisor,on_delete=models.CASCADE)
@@ -19,11 +20,15 @@ class Caller(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     title=models.CharField(max_length=50)
     department=models.ForeignKey(Department,on_delete=models.CASCADE)
-        
+    def __str__(self) -> str:
+        return self.user.username  
 class Technician(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     
     department=models.ForeignKey(Department,on_delete=models.CASCADE)
+    
+    def __str__(self) -> str:
+        return self.user.username
         
 class Category(models.Model):
     title=models.CharField(max_length=50)
